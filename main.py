@@ -69,19 +69,24 @@ scrollbar.config(command=plans_listbox.yview)
 
 
 
-def refresh_plans():
+def show_warning(text):
+    messagebox.showwarning("Ошибка", text)
 
+def show_info(text):
+    messagebox.showinfo("Готово", text)
+
+
+def refresh_plans():
     plans_listbox.delete(0, tk.END)
     for i, p in enumerate(plans, start=1):
         plans_listbox.insert(tk.END, f"{i}. {p['idea']}  —  {p['name']}")
-
 
 def save_data():
     idea_text = EnterIdea.get().strip()
     name_text = EnterName.get().strip()
 
     if not idea_text or not name_text:
-        messagebox.showwarning("Ошибка", "Заполни все поля!")
+        show_warning("Заполни все поля!")
         return
 
     plans.append({"idea": idea_text, "name": name_text})
@@ -90,7 +95,7 @@ def save_data():
     EnterIdea.delete(0, tk.END)
     EnterName.delete(0, tk.END)
 
-    messagebox.showinfo("Готово", "Идея сохранена!")
+    show_info("Идея сохранена!")
 
 
 
@@ -101,7 +106,7 @@ btn.place(relx=0.5, rely=0.9, anchor="s")
 
 def clear_all():
     if not plans:
-        messagebox.showinfo("Пусто", "Список и так пуст.")
+        show_info("Список и так пуст.")
         return
     if messagebox.askyesno("Подтверждение", "Удалить все планы?"):
         plans.clear()
