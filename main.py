@@ -2,13 +2,16 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-
+BG_COLOR="black"
+FG_COLOR="white"
+TITLE_FONT=("arial", 20, "bold")
+TEXT_FONT=("arial", 15)
 
 window = tk.Tk()
 window.title("Планы")
 window.geometry("1400x800")
 window.resizable(width=False, height=False)
-window["bg"] = "black"
+window["bg"] = BG_COLOR
 
 
 
@@ -17,12 +20,12 @@ notebook.pack(fill="both", expand=True)
 
 
 
-tab_add = tk.Frame(notebook, bg="black")
+tab_add = tk.Frame(notebook, bg=BG_COLOR)
 notebook.add(tab_add, text="Добавить идею")
 
 
 
-tab_plans = tk.Frame(notebook, bg="black")
+tab_plans = tk.Frame(notebook,bg=BG_COLOR)
 notebook.add(tab_plans, text="Мои планы")
 
 
@@ -31,34 +34,34 @@ plans = []
 
 
 
-lbl_name = tk.Label(tab_add, text="Название", font=("arial", 20, "bold"),
-                    fg="white", bg="black")
+lbl_name = tk.Label(tab_add, text="Название", font=TITLE_FONT,
+                    fg=FG_COLOR, bg=BG_COLOR)
 lbl_name.place(x=550, y=25)
 
-EnterName = tk.Entry(tab_add, fg="white", width=47, font=("arial", 15))
+EnterName = tk.Entry(tab_add, fg=FG_COLOR, width=47, font=TEXT_FONT,insertbackground="white",bg="grey20")
 EnterName.place(x=550, y=75)
 
-lbl_idea = tk.Label(tab_add, text="Добавить идею", font=("arial", 20, "bold"),
-                    fg="white", bg="black")
+lbl_idea = tk.Label(tab_add, text="Добавить идею",font=TITLE_FONT,
+                    fg=FG_COLOR, bg=BG_COLOR)
 lbl_idea.place(x=550, y=150)
 
-EnterIdea = tk.Entry(tab_add, fg="white", width=47, font=("arial", 15))
+EnterIdea = tk.Entry(tab_add, fg=FG_COLOR, width=47, font=TEXT_FONT, insertbackground="white", bg="grey20")
 EnterIdea.place(x=550, y=200)
 
 
 
-lbl_plans = tk.Label(tab_plans, text="Мои планы", font=("arial", 20, "bold"),
-                     fg="white", bg="black")
+lbl_plans = tk.Label(tab_plans, text="Мои планы", font=TITLE_FONT,
+                     fg=FG_COLOR, bg=BG_COLOR)
 lbl_plans.pack(pady=20)
 
-list_frame = tk.Frame(tab_plans, bg="black")
+list_frame = tk.Frame(tab_plans,bg=BG_COLOR)
 list_frame.pack(fill="both", expand=True, padx=50, pady=10)
 
 scrollbar = tk.Scrollbar(list_frame)
 scrollbar.pack(side="right", fill="y")
 
-plans_listbox = tk.Listbox(list_frame, font=("arial", 15),
-                           bg="grey20", fg="white",
+plans_listbox = tk.Listbox(list_frame, font=TEXT_FONT,
+                           bg="grey20", fg=FG_COLOR,
                            yscrollcommand=scrollbar.set,
                            selectbackground="grey40")
 plans_listbox.pack(side="left", fill="both", expand=True)
@@ -91,8 +94,8 @@ def save_data():
 
 
 
-btn = tk.Button(tab_add, text="Save", font=("arial", 14, "bold"),
-                fg="white", bg="grey20", command=save_data)
+btn = tk.Button(tab_add, text="Save", font=TITLE_FONT,
+                fg=FG_COLOR, bg="grey20", command=save_data)
 btn.place(relx=0.5, rely=0.9, anchor="s")
 
 
@@ -105,8 +108,8 @@ def clear_all():
         refresh_plans()
 
 
-btn_clear = tk.Button(tab_plans, text="Очистить всё", font=("arial", 15),
-                      fg="white", bg="grey20", command=clear_all)
+btn_clear = tk.Button(tab_plans, text="Очистить всё", font=TEXT_FONT,
+                      fg=FG_COLOR, bg="grey20", command=clear_all)
 btn_clear.pack(pady=10)
 
 
